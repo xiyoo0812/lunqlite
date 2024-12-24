@@ -141,7 +141,7 @@ namespace lunqlite {
         const char* read_key(lua_State* L, int idx, size_t* len) {
             int type = lua_type(L, idx);
             if (type != LUA_TSTRING && type != LUA_TNUMBER) {
-                luaL_error(L, "lsmdb read %d type %s not suppert!", idx, lua_typename(L, idx));
+                luaL_error(L, "lsmdb read key %d type %s not suppert!", idx, lua_typename(L, idx));
             }
             if (m_codec) {
                 return (const char*)m_codec->encode(L, idx, len);
@@ -165,7 +165,7 @@ namespace lunqlite {
                 }
             }
             if (type != LUA_TSTRING && type != LUA_TNUMBER) {
-                luaL_error(L, "lunqlite read %d type %s not suppert!", idx, lua_typename(L, idx));
+                luaL_error(L, "lunqlite read value %d type %s not suppert!", idx, lua_typename(L, idx));
             }
             return lua_tolstring(L, idx, len);
         }
